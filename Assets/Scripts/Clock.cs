@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void BeatDel();
+public delegate void BeatDel(float time);
 public class Clock : MonoBehaviour
 {
     [SerializeField] float beatTime = 0.5f;
@@ -18,7 +18,7 @@ public class Clock : MonoBehaviour
         while (true)
         {
             yield return new WaitForSecondsRealtime(beatTime);
-            Beat?.Invoke();
+            Beat?.Invoke(beatTime);
         }
     }
 
