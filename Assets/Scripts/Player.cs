@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void PT();
 public class Player : MonoBehaviour
 {
+    public static event PT PlayerTurnEnd;
     public Vector2Int currentPos;
     MainInput MI;
     Vector2Int moveDir = new Vector2Int(0,0);
     bool moving = false;
     MapMapper MM;
+    Animator myAnim;
     // Start is called before the first frame update
     void Start()
     {
+        myAnim = GetComponent<Animator>();
         MM = FindObjectOfType<MapMapper>();
         MI = new MainInput();
         MI.Enable();
@@ -31,10 +35,11 @@ public class Player : MonoBehaviour
             }
         };
 
-        Clock.Beat += () => {
-            if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor)
+        Clock.Beat += (time) => {
+            if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor && moveDir != Vector2Int.zero)
             {
-                transform.position += (Vector3Int)moveDir;
+                PlayerTurnEnd?.Invoke();
+                StartCoroutine(MoveToPosition(transform.position + (Vector3Int)moveDir,time/2));
                 currentPos += moveDir;
                 firstBeat = false;
             }
@@ -43,6 +48,21 @@ public class Player : MonoBehaviour
         };
 
     }
+
+    public IEnumerator MoveToPosition(Vector3 position, float timeToMove)
+    {
+        myAnim.SetBool("Move", true);
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, position, t);
+            yield return null;
+        }
+        myAnim.SetBool("Move",false);
+    }
+
     bool firstBeat = false;
     IEnumerator Move()
     {

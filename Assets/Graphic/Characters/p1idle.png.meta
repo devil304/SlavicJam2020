@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: c80b0d4550927b24f9fbe63ab6b18e8a
+guid: aec1c256e5edf1d44adca1059749d334
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3050522522447247182
-    second: SGstands_0
+      213: 8211831786995033791
+    second: p1idle_0
   - first:
-      213: 351749147544958135
-    second: SGstands_1
+      213: 8298832676864622032
+    second: p1idle_1
   - first:
-      213: 4655931175297899652
-    second: SGstands_2
+      213: 8879123907861829882
+    second: p1idle_2
   - first:
-      213: -5664547963052154590
-    second: SGstands_3
-  - first:
-      213: -6268451312452818438
-    second: SGstands_0
-  - first:
-      213: -5308542023340044893
-    second: SGstands_1
-  - first:
-      213: -148727061015963662
-    second: SGstands_2
-  - first:
-      213: 6848048875341614933
-    second: SGstands_3
+      213: 7024289300579619719
+    second: p1idle_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,85 +113,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SGstands_0
+      name: p1idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 700
         height: 700
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af92b653ebcf109a0800000000000000
-      internalID: -6268451312452818438
+      spriteID: fb6a91b808946f170800000000000000
+      internalID: 8211831786995033791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SGstands_1
+      name: p1idle_1
       rect:
         serializedVersion: 2
         x: 700
         y: 0
         width: 700
         height: 700
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ad4597d7254456b0800000000000000
-      internalID: -5308542023340044893
+      spriteID: 0dd7beab9506b2370800000000000000
+      internalID: 8298832676864622032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SGstands_2
+      name: p1idle_2
       rect:
         serializedVersion: 2
         x: 1400
         y: 0
         width: 700
         height: 700
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f7d7a7a68d9fedf0800000000000000
-      internalID: -148727061015963662
+      spriteID: af858cc862cf83b70800000000000000
+      internalID: 8879123907861829882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SGstands_3
+      name: p1idle_3
       rect:
         serializedVersion: 2
         x: 2100
         y: 0
         width: 700
         height: 700
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55f004b6b28290f50800000000000000
-      internalID: 6848048875341614933
+      spriteID: 78310a017e94b7160800000000000000
+      internalID: 7024289300579619719
       vertices: []
       indices: 
       edges: []
