@@ -32,40 +32,32 @@ public class Player : MonoBehaviour
         };
 
         Clock.Beat += () => {
-            BeatT = true;
-            Debug.Log("Clock");
-            i++;
-        };
-
-    }
-    bool BeatT = false;
-    int i = 0, x = 0;
-    IEnumerator Move()
-    {
-        var tmp = MI.Movement;
-        do
-        {
-            moveDir = new Vector2Int(tmp.leftright.ReadValue<float>()>0?(int)Math.Ceiling(tmp.leftright.ReadValue<float>()): (int)Math.Floor(tmp.leftright.ReadValue<float>()),
-                tmp.updown.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.updown.ReadValue<float>()) : (int)Math.Floor(tmp.updown.ReadValue<float>()));
-            Debug.Log("Move : "+moveDir);
-            BeatT = false;
-            yield return new WaitUntil(() => BeatT);
-            if(x==0)
-                x = i;
-            else
-                x++;
-            if (x < i - 1)
-            {
-                Debug.LogWarning("Skip i: "+i+" x: "+x);
-                x = i;
-            }
             if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor)
             {
                 transform.position += (Vector3Int)moveDir;
                 currentPos += moveDir;
+                firstBeat = false;
             }
+            //Debug.Log("Move : " + moveDir);
+            Debug.DrawLine(new Vector3(4,4,0), new Vector3(5, 5, 0), Color.red, 0.1f);
+        };
+
+    }
+    bool firstBeat = false;
+    IEnumerator Move()
+    {
+        firstBeat = true;
+        var tmp = MI.Movement;
+        var tmpDir = new Vector2Int(tmp.leftright.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.leftright.ReadValue<float>()) : (int)Math.Floor(tmp.leftright.ReadValue<float>()),
+                tmp.updown.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.updown.ReadValue<float>()) : (int)Math.Floor(tmp.updown.ReadValue<float>())); ;
+        moveDir = tmpDir;
+        do
+        {
+            yield return new WaitForFixedUpdate();
+            tmpDir= new Vector2Int(tmp.leftright.ReadValue<float>()>0?(int)Math.Ceiling(tmp.leftright.ReadValue<float>()): (int)Math.Floor(tmp.leftright.ReadValue<float>()),
+                tmp.updown.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.updown.ReadValue<float>()) : (int)Math.Floor(tmp.updown.ReadValue<float>()));
+            moveDir = tmpDir != Vector2Int.zero || !firstBeat ? tmpDir :moveDir;
         } while (moveDir != Vector2Int.zero);
         moving = false;
-        x = 0;
     }
 }
