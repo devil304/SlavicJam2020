@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     bool moving = false;
     MapMapper MM;
     Animator myAnim;
+    float time;
     // Start is called before the first frame update
     void Start()
     {
+        time = FindObjectOfType<Clock>().beatTime;
         myAnim = GetComponent<Animator>();
+        myAnim.SetFloat("Speed",(1f/time));
         MM = FindObjectOfType<MapMapper>();
         MI = new MainInput();
         MI.Enable();
@@ -35,13 +38,18 @@ public class Player : MonoBehaviour
             }
         };
 
-        Clock.Beat += (time) => {
+        Clock.Beat += () => {
             if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor && moveDir != Vector2Int.zero)
             {
-                PlayerTurnEnd?.Invoke();
-                StartCoroutine(MoveToPosition(transform.position + (Vector3Int)moveDir,time/2));
+                movementEnded = false;
+                StartCoroutine(MoveToPosition(transform.position + (Vector3Int)moveDir,time));
                 currentPos += moveDir;
                 firstBeat = false;
+                PlayerTurnEnd?.Invoke();
+            }
+            if(moveDir == Vector2Int.zero && movementEnded)
+            {
+                myAnim.SetBool("Move", false);
             }
             //Debug.Log("Move : " + moveDir);
             Debug.DrawLine(new Vector3(4,4,0), new Vector3(5, 5, 0), Color.red, 0.1f);
@@ -60,10 +68,10 @@ public class Player : MonoBehaviour
             transform.position = Vector3.Lerp(currentPos, position, t);
             yield return null;
         }
-        myAnim.SetBool("Move",false);
+        movementEnded = true;
     }
 
-    bool firstBeat = false;
+    bool firstBeat = false, movementEnded = false;
     IEnumerator Move()
     {
         firstBeat = true;
