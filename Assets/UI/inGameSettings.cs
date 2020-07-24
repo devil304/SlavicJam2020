@@ -8,11 +8,12 @@ public class inGameSettings : MonoBehaviour
 {
     AudioSource[] SFXsources;
     AudioSource[] MUSICsources;
-    [SerializeField] float SFXValue;
-    [SerializeField] float MUSICValue;
+    [SerializeField] public float SFXValue;
+    [SerializeField] public float MUSICValue;
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         SFXsources = GameObject.FindGameObjectsWithTag("SFX").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
         MUSICsources = GameObject.FindGameObjectsWithTag("MUSIC").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
 

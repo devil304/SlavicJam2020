@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class valueChanger : MonoBehaviour
+public class SFXvalueChanger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    inGameSettings iGS;
+    private void Awake()
     {
-        
+        iGS = FindObjectOfType<inGameSettings>();
+        GetComponent<Slider>().value = iGS.SFXValue;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void valChange(float val)
     {
-        
+        iGS.SFXChange(val);
     }
 }
