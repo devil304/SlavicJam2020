@@ -32,8 +32,5 @@ public class MapMapper : MonoBehaviour
     private void Awake()
     {
         mapTheMap();
-        Player.PlayerTurnEnd += () => {
-            Debug.Log("Test");
-        };
     }
 }
