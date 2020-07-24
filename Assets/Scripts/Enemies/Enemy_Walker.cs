@@ -13,20 +13,17 @@ public class Enemy_Walker : Enemy_Base
         WaypointsContainer.SetActive(false);
     }
 
-    float time = 2f;
-    private void Update()
+    private void Start()
+    {
+        Player.PlayerTurnEnd += Move;
+    }
+
+    void Move() 
     {
         if(!isMovementFinished)
         {
-            time -= Time.deltaTime;
-            if (time < 0)
-            {
-                time = 2f;
-
-                var direction = waypoints[waypointIndex].transform.position - transform.position;
-
-                MoveToDirection(direction.normalized, StepFinished);
-            }
+            var direction = waypoints[waypointIndex].transform.position - transform.position;
+            MoveToDirection(direction.normalized, StepFinished);
         }
     }
 
@@ -34,15 +31,16 @@ public class Enemy_Walker : Enemy_Base
     {
         if(waypointIndex < waypoints.Count)
         {
-            if (transform.position == waypoints[waypointIndex].transform.position)
-                waypointIndex++;
-        } 
-        else if(waypointIndex == waypoints.Count)
-        {
-            if (transform.position == waypoints[waypointIndex].transform.position)
+            var dist = Vector3.Distance(transform.position, waypoints[waypointIndex].transform.position);
+            if (dist < 1.1)
             {
-                isMovementFinished = true;
+                waypointIndex++;
+                if(waypointIndex == waypoints.Count)
+                {
+                    isMovementFinished = true;
+                }
             }
-        }
+                
+        } 
     }
 }
