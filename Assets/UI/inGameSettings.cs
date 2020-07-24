@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class inGameSettings : MonoBehaviour
@@ -10,15 +11,37 @@ public class inGameSettings : MonoBehaviour
     AudioSource[] MUSICsources;
     [SerializeField] public float SFXValue;
     [SerializeField] public float MUSICValue;
+    bool isTouchScreen;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            isTouchScreen = true;
+            GameObject.FindGameObjectWithTag("Touchscreen").SetActive(true);
+        }
+        else
+        {
+            isTouchScreen = false;
+            GameObject.FindGameObjectWithTag("Touchscreen").SetActive(false);
+        }
+
         SFXsources = GameObject.FindGameObjectsWithTag("SFX").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
         MUSICsources = GameObject.FindGameObjectsWithTag("MUSIC").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
 
-        SceneManager.activeSceneChanged += (Old,New) =>
+        SceneManager.activeSceneChanged += (Old, New) =>
         {
+            if (isTouchScreen == true)
+            {
+                GameObject.FindGameObjectWithTag("Touchscreen").SetActive(true);
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Touchscreen").SetActive(false);
+            }
+
             SFXsources = GameObject.FindGameObjectsWithTag("SFX").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
             MUSICsources = GameObject.FindGameObjectsWithTag("MUSIC").Select(AS => AS.GetComponent<AudioSource>()).ToArray();
 
