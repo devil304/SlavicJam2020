@@ -60,9 +60,9 @@ public class Player : MonoBehaviour
                     mySR.flipX = true;
                 else if (mySR.flipX && attacDir.x > 0)
                     mySR.flipX = false;
-                StartCoroutine(Attack());
                 firstBeat = false;
                 PlayerTurnEnd?.Invoke();
+                StartCoroutine(Attack(attacDir));
             }
             if((moveDir == Vector2Int.zero || MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType != TileType.Floor) && movementEnded)
             {
@@ -74,12 +74,16 @@ public class Player : MonoBehaviour
 
     }
 
-    public IEnumerator Attack()
+    public IEnumerator Attack(Vector2Int pos)
     {
         myAnim.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(time);
         myAnim.SetBool("Shoot", false);
-        Instantiate(plate, (Vector3Int)(currentPos + attacDir), Quaternion.identity);
+        var tmp = Instantiate(plate, (Vector3Int)(currentPos + pos), Quaternion.identity).GetComponent<vinyl>();
+        tmp.dir = pos;
+        tmp.MM = MM;
+        tmp.time = time;
+        MM.vinyls[(currentPos + pos).x, (currentPos + pos).y] = tmp;
     }
 
     public IEnumerator MoveToPositionCam(Vector3 position, float timeToMove, Transform target)
