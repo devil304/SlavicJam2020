@@ -25,21 +25,14 @@ public class Player : MonoBehaviour
         MM = FindObjectOfType<MapMapper>();
         MI = new MainInput();
         MI.Enable();
-        MI.Movement.updown.performed += perf => {
+        MI.Movement.Movment.performed += perf => {
             if (!moving)
             {
                 moving = true;
                 StartCoroutine(Move());
             }
         };
-        MI.Movement.leftright.performed += perf => {
-            if (!moving)
-            {
-                moving = true;
-                StartCoroutine(Move());
-            }
-        };
-        MI.Movement.action1.performed += perf =>
+        MI.Movement.Attack.performed += perf =>
         {
 
         };
@@ -87,14 +80,12 @@ public class Player : MonoBehaviour
     {
         firstBeat = true;
         var tmp = MI.Movement;
-        var tmpDir = new Vector2Int(tmp.leftright.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.leftright.ReadValue<float>()) : (int)Math.Floor(tmp.leftright.ReadValue<float>()),
-                tmp.updown.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.updown.ReadValue<float>()) : (int)Math.Floor(tmp.updown.ReadValue<float>())); ;
+        var tmpDir = Vector2Int.RoundToInt(tmp.Movment.ReadValue<Vector2>());
         moveDir = tmpDir;
         do
         {
             yield return new WaitForFixedUpdate();
-            tmpDir= new Vector2Int(tmp.leftright.ReadValue<float>()>0?(int)Math.Ceiling(tmp.leftright.ReadValue<float>()): (int)Math.Floor(tmp.leftright.ReadValue<float>()),
-                tmp.updown.ReadValue<float>() > 0 ? (int)Math.Ceiling(tmp.updown.ReadValue<float>()) : (int)Math.Floor(tmp.updown.ReadValue<float>()));
+            tmpDir = Vector2Int.RoundToInt(tmp.Movment.ReadValue<Vector2>());
             moveDir = tmpDir != Vector2Int.zero || !firstBeat ? tmpDir :moveDir;
         } while (moveDir != Vector2Int.zero);
         moving = false;
