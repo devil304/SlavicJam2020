@@ -32,39 +32,6 @@
             ],
             "bindings": [
                 {
-                    "name": "Pad",
-                    "id": "7651d9e0-4eb0-495c-9255-f7f18ae01bcf",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "up/down",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "29b868c6-ed53-4fca-b6ef-f0338b43f4db",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "up/down",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "negative",
-                    "id": "504aabd0-e88b-4bd7-adb9-40bf040e6a5f",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "up/down",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "wasd",
                     "id": "094b392a-71e6-4749-932f-95434808476f",
                     "path": "1DAxis",
@@ -131,37 +98,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Pad",
-                    "id": "f1a4d3b0-d05b-41fc-afbf-1fe755a2a976",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "c1fed468-b88e-4304-a7a9-4cdf2999a290",
+                    "path": "<Gamepad>/leftStick/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "left/right",
-                    "isComposite": true,
+                    "action": "up/down",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "b4c1c1a4-f3e4-43bb-9d71-20824488f055",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "left/right",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "negative",
-                    "id": "15e6035b-9ef6-49ad-a1a6-90545ca72177",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "left/right",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "wasd",
@@ -228,6 +173,17 @@
                     "action": "left/right",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3642ce65-45c6-4bc9-b51a-382c8f9dc0d1",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "left/right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

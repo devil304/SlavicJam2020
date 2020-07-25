@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
                 StartCoroutine(Move());
             }
         };
+        MI.Movement.action1.performed += perf =>
+        {
+
+        };
 
         Clock.Beat += () => {
             if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor && moveDir != Vector2Int.zero)
