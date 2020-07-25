@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class vinyl : MonoBehaviour
+public class vinyl : Projectile
 {
     [HideInInspector]public Vector2Int dir;
     [HideInInspector]public float time;
     [HideInInspector]public MapMapper MM;
     void Start()
     {
+        pt = proType.Vinyl;
         Player.PlayerTurnEnd += () => {
             StartCoroutine(MoveToPosition());
         };
@@ -25,7 +26,7 @@ public class vinyl : MonoBehaviour
         }
         else
         {
-            MM.vinyls[pos.x,pos.y] = null;
+            MM.pros.Remove(this);
             Destroy(gameObject);
         }
     }

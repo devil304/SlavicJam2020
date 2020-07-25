@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         tmp.dir = pos;
         tmp.MM = MM;
         tmp.time = time;
-        MM.vinyls[(currentPos + pos).x, (currentPos + pos).y] = tmp;
+        MM.pros.Add(tmp);
     }
 
     public IEnumerator MoveToPositionCam(Vector3 position, float timeToMove, Transform target)
