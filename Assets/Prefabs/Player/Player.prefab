@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPos: {x: 1, y: 1}
+  plate: {fileID: 7497374196876820752, guid: 4770af91ab7ce2b4b80b93dd86f6ef9c, type: 3}
 --- !u!95 &2456589901466370215
 Animator:
   serializedVersion: 3

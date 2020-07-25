@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     MapMapper MM;
     Animator myAnim;
     SpriteRenderer mySR;
-    [SerializeField]Transform camera;
+    [SerializeField] GameObject plate;
     float time;
     // Start is called before the first frame update
     void Awake()
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         };
         MI.Movement.Attack.performed += perf =>
         {
-            if (!moving)
+            if (!attacking)
             {
                 attacking = true;
                 StartCoroutine(Attac());
@@ -43,29 +43,26 @@ public class Player : MonoBehaviour
         };
 
         Clock.Beat += () => {
-            if (MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor)
+            if (!(moveDir.x != 0 && moveDir.y != 0) && moveDir != Vector2Int.zero && CurrentAction && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor)
             {
-                if (!(moveDir.x != 0 && moveDir.y != 0) && moveDir != Vector2Int.zero && CurrentAction)
-                {
-                    if (!mySR.flipX && moveDir.x < 0)
-                        mySR.flipX = true;
-                    else if (mySR.flipX && moveDir.x > 0)
-                        mySR.flipX = false;
-                    currentPos += moveDir;
-                    StartCoroutine(MoveToPosition(moveDir, time));
-                    firstBeat = false;
-                    PlayerTurnEnd?.Invoke();
-                }
-                else if (!(moveDir.x != 0 && moveDir.y != 0) && moveDir != Vector2Int.zero && !CurrentAction)
-                {
-                    if (!mySR.flipX && attacDir.x < 0)
-                        mySR.flipX = true;
-                    else if (mySR.flipX && attacDir.x > 0)
-                        mySR.flipX = false;
-
-                    firstBeat = false;
-                    PlayerTurnEnd?.Invoke();
-                }
+                if (!mySR.flipX && moveDir.x < 0)
+                    mySR.flipX = true;
+                else if (mySR.flipX && moveDir.x > 0)
+                    mySR.flipX = false;
+                currentPos += moveDir;
+                StartCoroutine(MoveToPosition(moveDir, time));
+                firstBeat = false;
+                PlayerTurnEnd?.Invoke();
+            }
+            else if (!(attacDir.x != 0 && attacDir.y != 0) && attacDir != Vector2Int.zero && !CurrentAction && MM.map[currentPos.x + attacDir.x, currentPos.y + attacDir.y].TType == TileType.Floor)
+            {
+                if (!mySR.flipX && attacDir.x < 0)
+                    mySR.flipX = true;
+                else if (mySR.flipX && attacDir.x > 0)
+                    mySR.flipX = false;
+                StartCoroutine(Attack());
+                firstBeat = false;
+                PlayerTurnEnd?.Invoke();
             }
             if((moveDir == Vector2Int.zero || MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType != TileType.Floor) && movementEnded)
             {
@@ -79,9 +76,10 @@ public class Player : MonoBehaviour
 
     public IEnumerator Attack()
     {
-
+        myAnim.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(time);
-
+        myAnim.SetBool("Shoot", false);
+        Instantiate(plate, (Vector3Int)(currentPos + attacDir), Quaternion.identity);
     }
 
     public IEnumerator MoveToPositionCam(Vector3 position, float timeToMove, Transform target)
@@ -127,7 +125,7 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
             tmpDir = Vector2Int.RoundToInt(tmp.Movment.ReadValue<Vector2>());
-            if (CurrentAction && tmpDir == moveDir)
+            if (!CurrentAction && tmpDir != moveDir)
                 CurrentAction = true;
             moveDir = tmpDir != Vector2Int.zero || !firstBeat ? tmpDir :moveDir;
         } while (moveDir != Vector2Int.zero);
@@ -144,7 +142,7 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
             tmpDir = Vector2Int.RoundToInt(tmp.Attack.ReadValue<Vector2>()); 
-            if (!CurrentAction && tmpDir == moveDir)
+            if (CurrentAction && tmpDir != attacDir)
                 CurrentAction = false;
             attacDir = tmpDir != Vector2Int.zero || !firstBeat ? tmpDir : attacDir;
         } while (attacDir != Vector2Int.zero);
