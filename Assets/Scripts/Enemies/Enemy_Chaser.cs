@@ -5,23 +5,40 @@ using UnityEngine;
 public class Enemy_Chaser : Enemy_Base
 {
     Pathfinding pf;
-    public GameObject test;
+    Player player;
+    bool triggerConsumed = false;
     private void Start()
     {
         pf = GetComponent<Pathfinding>();
+        player = FindObjectOfType<Player>();
+        Player.PlayerTurnEnd += Move;
+    }
+
+    void Move()
+    {
+        List<Vector2Int> list = pf.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.y), player.currentPos);
+        if(list.Count > 0)
+        {
+            Vector2 dir = list[0] - new Vector2Int((int)transform.position.x, (int)transform.position.y);
+            MoveToDirection(dir.normalized);
+            MoveFinished();
+        }
     }
 
     private void Update()
     {
-        Test();
+        MoveFinished();
     }
 
-    void Test()
+    void MoveFinished()
     {
-        List<Vector2Int> list = pf.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.y), new Vector2Int(1, 1));
-        foreach (Vector2Int pos in list)
+        if(!triggerConsumed)
         {
-            Instantiate(test, (Vector3Int)pos, Quaternion.identity);
-        }
+            if (player.currentPos == (Vector2)transform.position)
+            {
+                triggerConsumed = true;
+                Debug.Log("Player hit.");
+            }
+        } 
     }
 }
