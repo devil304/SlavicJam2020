@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 5980349279568717589
     second: p3idle_3
+  - first:
+      213: 6296525111514145328
+    second: p3idle_0
+  - first:
+      213: 2711125282775119680
+    second: p3idle_1
+  - first:
+      213: -1952749521044429616
+    second: p3idle_2
+  - first:
+      213: -3100892722191914334
+    second: p3idle_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -75,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -87,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -99,7 +111,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -118,8 +130,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 700
-        height: 700
+        width: 1400
+        height: 1400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acd6b1b79ead520e0800000000000000
-      internalID: -2295187738747769398
+      spriteID: 032a02f7a30c16750800000000000000
+      internalID: 6296525111514145328
       vertices: []
       indices: 
       edges: []
@@ -137,10 +149,10 @@ TextureImporter:
       name: p3idle_1
       rect:
         serializedVersion: 2
-        x: 700
+        x: 1400
         y: 0
-        width: 700
-        height: 700
+        width: 1400
+        height: 1400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006311275d79a97f0800000000000000
-      internalID: -605004256930351616
+      spriteID: 047346d941adf9520800000000000000
+      internalID: 2711125282775119680
       vertices: []
       indices: 
       edges: []
@@ -158,10 +170,10 @@ TextureImporter:
       name: p3idle_2
       rect:
         serializedVersion: 2
-        x: 1400
+        x: 2800
         y: 0
-        width: 700
-        height: 700
+        width: 1400
+        height: 1400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eacb67f496b5a4eb0800000000000000
-      internalID: -4734871550363779922
+      spriteID: 0d425de18a076e4e0800000000000000
+      internalID: -1952749521044429616
       vertices: []
       indices: 
       edges: []
@@ -179,10 +191,10 @@ TextureImporter:
       name: p3idle_3
       rect:
         serializedVersion: 2
-        x: 2100
+        x: 4200
         y: 0
-        width: 700
-        height: 700
+        width: 1400
+        height: 1400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +202,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 517e4790cf77ef250800000000000000
-      internalID: 5980349279568717589
+      spriteID: 2aa28279f7a67f4d0800000000000000
+      internalID: -3100892722191914334
       vertices: []
       indices: 
       edges: []
