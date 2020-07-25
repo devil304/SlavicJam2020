@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
                 currentPos += moveDir;
                 StartCoroutine(MoveToPosition(moveDir, time));
                 firstBeat = false;
-                PlayerTurnEnd?.Invoke();
             }
             else if (!(attacDir.x != 0 && attacDir.y != 0) && attacDir != Vector2Int.zero && !CurrentAction && MM.map[currentPos.x + attacDir.x, currentPos.y + attacDir.y].TType == TileType.Floor)
             {
@@ -61,7 +60,6 @@ public class Player : MonoBehaviour
                 else if (mySR.flipX && attacDir.x > 0)
                     mySR.flipX = false;
                 firstBeat = false;
-                PlayerTurnEnd?.Invoke();
                 StartCoroutine(Attack(attacDir));
             }
             if((moveDir == Vector2Int.zero || MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType != TileType.Floor) && movementEnded)
@@ -76,6 +74,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator Attack(Vector2Int pos)
     {
+        PlayerTurnEnd?.Invoke();
         myAnim.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(time);
         myAnim.SetBool("Shoot", false);
@@ -106,6 +105,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator MoveToPosition(Vector2 position, float timeToMove)
     {
+        PlayerTurnEnd?.Invoke();
         StartCoroutine(MoveToPositionCam((Vector3Int)currentPos, timeToMove, Camera.main.transform));
         yield return new WaitUntil(() => movementEnded);
         movementEnded = false;

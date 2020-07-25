@@ -13,10 +13,13 @@ public class vinyl : MonoBehaviour
     }
     void MoveVinyl()
     {
-        StartCoroutine(MoveToPosition());
+        if(!trig)
+            StartCoroutine(MoveToPosition());
     }
+    bool trig = false;
     public IEnumerator MoveToPosition()
     {
+        trig = true;
         var pos = Vector2Int.RoundToInt(transform.position) + dir;
         yield return new WaitForSecondsRealtime(time / 2f);
         transform.position += (Vector3)((Vector2)dir / 2f);
@@ -31,6 +34,7 @@ public class vinyl : MonoBehaviour
             MM.pros.Remove(this);
             Destroy(gameObject);
         }
+        trig = false;
     }
 
 
