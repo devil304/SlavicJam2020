@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1822812043804652649}
   - component: {fileID: 2036897588680580692}
-  - component: {fileID: 7441401584882757421}
   - component: {fileID: 578053250}
   m_Layer: 0
   m_Name: Pref_WPShoot
@@ -167,19 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7441401584882757421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116451432153800908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be7115d3a4ce664ebdf266f160d59bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Direction: {fileID: 691129370103634072}
 --- !u!114 &578053250
 MonoBehaviour:
   m_ObjectHideFlags: 0

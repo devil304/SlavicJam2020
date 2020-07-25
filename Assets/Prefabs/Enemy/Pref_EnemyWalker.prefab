@@ -101,7 +101,9 @@ MonoBehaviour:
     type: 3}
   WaypointsContainerEditor: {fileID: 6642060841170628349}
   waypointsEditor: []
-  prefs: []
+  prefs:
+  - {fileID: 6880761669974843168, guid: 5485eaec3292c254684b050a4b127185, type: 3}
+  - {fileID: 7116451432153800908, guid: 16fe069f14c58474db3d71b48a9b90fc, type: 3}
   waypoints: []
 --- !u!95 &6074191613574446096
 Animator:
