@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class TileInfo : MonoBehaviour
 {
-    public bool HasTable = false;
+    public bool HasTable = false, hasJukeBox = false;
     public TileType TType;
 }
 

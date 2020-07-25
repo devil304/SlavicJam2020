@@ -8,7 +8,8 @@ public class MapMapper : MonoBehaviour
 {
     [HideInInspector] public TileInfo[,] map { get; private set; }
     [HideInInspector] public Player play;
-    [HideInInspector] public List<Projectile> pros = new List<Projectile>();
+    [HideInInspector] public List<vinyl> pros = new List<vinyl>();
+    [HideInInspector] public List<Bullet> bullets = new List<Bullet>();
 
     public void mapTheMap()
     {
