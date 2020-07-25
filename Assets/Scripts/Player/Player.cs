@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
         Clock.Beat += () => {
             if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor && moveDir != Vector2Int.zero)
             {
-                movementEnded = false;
                 if (!mySR.flipX && moveDir.x < 0)
                     mySR.flipX = true;
                 else if (mySR.flipX && moveDir.x > 0)
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
                 firstBeat = false;
                 PlayerTurnEnd?.Invoke();
             }
-            if(moveDir == Vector2Int.zero && movementEnded)
+            if((moveDir == Vector2Int.zero || MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType != TileType.Floor) && movementEnded)
             {
                 myAnim.SetBool("Move", false);
             }
@@ -65,6 +64,8 @@ public class Player : MonoBehaviour
 
     public IEnumerator MoveToPosition(Vector2 position, float timeToMove)
     {
+        yield return new WaitUntil(() => movementEnded);
+        movementEnded = false;
         myAnim.SetBool("Move", true);
         var currentPos = transform.position;
         var t = 0f;
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
         movementEnded = true;
     }
 
-    bool firstBeat = false, movementEnded = false;
+    bool firstBeat = false, movementEnded = true;
     IEnumerator Move()
     {
         firstBeat = true;
