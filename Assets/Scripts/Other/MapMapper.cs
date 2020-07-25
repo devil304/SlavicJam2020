@@ -8,7 +8,7 @@ public class MapMapper : MonoBehaviour
 {
     [HideInInspector] public TileInfo[,] map { get; private set; }
     [HideInInspector] public Player play;
-    [HideInInspector] public vinyl[,] vinyls;
+    [HideInInspector] public List<Projectile> pros = new List<Projectile>();
 
     public void mapTheMap()
     {
@@ -24,7 +24,6 @@ public class MapMapper : MonoBehaviour
         int maxY = (int)Math.Round(tiles.Max(go => go.position.y), 0);
 
         map = new TileInfo[maxX+1, maxY+1];
-        vinyls = new vinyl[maxX + 1, maxY + 1];
 
         foreach (Transform go in tiles)
         {
@@ -34,6 +33,7 @@ public class MapMapper : MonoBehaviour
 
     private void Awake()
     {
+        play = FindObjectOfType<Player>();
         mapTheMap();
     }
 }
