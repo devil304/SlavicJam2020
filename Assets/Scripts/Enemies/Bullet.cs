@@ -6,11 +6,23 @@ public class Bullet : MonoBehaviour
 {
     public Vector2 Direction { get; set; }
     MapMapper MM;
-    // Start is called before the first frame update
+    Player player;
+    bool hitOccured = false;
     void Start()
     {
-        MM = FindObjectOfType<MapMapper>(); 
+        MM = FindObjectOfType<MapMapper>();
+        player = FindObjectOfType<Player>();
         Player.PlayerTurnEnd += Move;
+    }
+
+    private void Update()
+    {
+        if (player.currentPos == (Vector2)transform.position && !hitOccured)
+        {
+            hitOccured = true;
+            Debug.Log("Player hit.");
+            // do something
+        }
     }
 
     void Move()
@@ -23,6 +35,13 @@ public class Bullet : MonoBehaviour
             {
                 Player.PlayerTurnEnd -= Move;
                 Destroy(gameObject);
+            }
+
+            if(player.currentPos == (Vector2)transform.position && !hitOccured)
+            {
+                hitOccured = true;
+                Debug.Log("Player hit.");
+                // do something
             }
         }
     }

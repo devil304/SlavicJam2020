@@ -70,7 +70,7 @@ public class Enemy_Walker : Enemy_Base
         if(waypointIndex < waypoints.Length)
         {
             var dist = Vector2.Distance(transform.position, waypoints[waypointIndex].pos);
-            Debug.Log(dist);
+            
             if (dist < 0.1)
             {
                 isStandingOnWaypoint = true;
