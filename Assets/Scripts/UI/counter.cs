@@ -7,11 +7,14 @@ using UnityEngine;
 public class counter : MonoBehaviour
 {
     float tim = 0;
-    string Tim;
+    TextMeshProUGUI tmp;
+    private void Awake()
+    {
+        tmp = GetComponent<TextMeshProUGUI>();
+    }
     void Update()
     {
         tim += Time.deltaTime;
-        Tim = ((int)(tim / 6)).ToString() + '.' + Math.Round(tim, 2).ToString();
-        gameObject.GetComponent<TextMeshPro>().text = Tim;
+        tmp.text = ((int)(tim / 60)).ToString() + ':' + Math.Round(tim - (((int)(tim / 60))*60), 2).ToString();
     }
 }
