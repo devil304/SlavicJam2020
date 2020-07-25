@@ -7,21 +7,25 @@ public class Enemy_Chaser : Enemy_Base
     Pathfinding pf;
     Player player;
     bool triggerConsumed = false;
-    private void Start()
+    private new void Start()
     {
         pf = GetComponent<Pathfinding>();
         player = FindObjectOfType<Player>();
         Player.PlayerTurnEnd += Move;
+        
+        base.Start();
     }
 
     void Move()
     {
+        CheckIfHit();
         List<Vector2Int> list = pf.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.y), player.currentPos);
         if(list.Count > 0)
         {
             Vector2 dir = list[0] - new Vector2Int((int)transform.position.x, (int)transform.position.y);
             StartCoroutine(MoveToDirection(dir.normalized, MoveFinished));
         }
+        CheckIfHit();
     }
 
     private void Update()

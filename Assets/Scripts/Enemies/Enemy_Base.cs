@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
-    float time = 0.5f;
+    public MapMapper MM { get; set; }
+    float time;
 
-    private void Start()
+    public void Start()
     {
+        MM = FindObjectOfType<MapMapper>();
         time = FindObjectOfType<Clock>().beatTime;
     }
 
@@ -32,5 +34,16 @@ public class Enemy_Base : MonoBehaviour
         }
 
         FinishedCallback?.Invoke();
+    }
+
+    public void CheckIfHit()
+    {
+        for(int i = 0; i < MM.pros.Count; i++)
+        {
+            if(MM.pros[i].transform.position == transform.position)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

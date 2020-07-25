@@ -16,13 +16,15 @@ public class Enemy_Walker : Enemy_Base
 #endif
     public WaypointData[] waypoints;
 
-    private void Start()
+    private new void Start()
     {
         Player.PlayerTurnEnd += Action;
+        base.Start();
     }
 
     void Action()
     {
+        CheckIfHit();
         if(waypointIndex < waypoints.Length)
         {
             if (waypoints[waypointIndex].shoot && !isShootFinished && isStandingOnWaypoint)
@@ -78,7 +80,8 @@ public class Enemy_Walker : Enemy_Base
             {
                 isStandingOnWaypoint = false;
             }
-        } 
+        }
+        CheckIfHit();
     }
 
     private void OnDestroy()

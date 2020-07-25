@@ -5,14 +5,14 @@ using UnityEngine;
 public class Enemy_JukeBoxFinder : Enemy_Base
 {
     Pathfinding pathfinding;
-    MapMapper MM;
     Vector2Int? target;
     List<Vector2Int> path;
     
-    void Start()
+    private new void Start()
     {
+        base.Start();
+
         pathfinding = GetComponent<Pathfinding>();
-        MM = FindObjectOfType<MapMapper>();
         target = FindJukeBox();
         if(target != null)
         {
@@ -26,7 +26,8 @@ public class Enemy_JukeBoxFinder : Enemy_Base
 
     void Move()
     {
-        if(path.Count > 0)
+        CheckIfHit();
+        if (path.Count > 0)
         {
             Vector2 dir = path[0] - new Vector2Int((int)transform.position.x, (int)transform.position.y);
             StartCoroutine(MoveToDirection(dir.normalized, MoveFinished));
@@ -37,6 +38,7 @@ public class Enemy_JukeBoxFinder : Enemy_Base
         {
             Player.PlayerTurnEnd -= Move;
         }
+        CheckIfHit();
     }
 
     void MoveFinished()

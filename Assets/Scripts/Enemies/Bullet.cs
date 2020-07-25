@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
         MM = FindObjectOfType<MapMapper>();
         player = FindObjectOfType<Player>();
         Player.PlayerTurnEnd += Move;
+        MM.bullets.Add(this);
     }
 
     private void Update()
@@ -33,7 +34,7 @@ public class Bullet : MonoBehaviour
 
             if(MM.map[(int)transform.position.x, (int)transform.position.y].TType == TileType.Wall)
             {
-                Player.PlayerTurnEnd -= Move;
+                //Player.PlayerTurnEnd -= Move;
                 Destroy(gameObject);
             }
 
@@ -44,5 +45,11 @@ public class Bullet : MonoBehaviour
                 // do something
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Player.PlayerTurnEnd -= Move;
+        MM.bullets.Remove(this);
     }
 }
