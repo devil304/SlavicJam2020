@@ -40,4 +40,9 @@ public class Enemy_Chaser : Enemy_Base
             }
         } 
     }
+
+    private void OnDestroy()
+    {
+        Player.PlayerTurnEnd -= Move;
+    }
 }
