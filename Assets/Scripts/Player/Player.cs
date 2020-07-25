@@ -13,10 +13,12 @@ public class Player : MonoBehaviour
     bool moving = false;
     MapMapper MM;
     Animator myAnim;
+    SpriteRenderer mySR;
     float time;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        mySR = GetComponent<SpriteRenderer>();
         time = FindObjectOfType<Clock>().beatTime;
         myAnim = GetComponent<Animator>();
         myAnim.SetFloat("Speed",(1f/(time/2f)));
@@ -42,7 +44,11 @@ public class Player : MonoBehaviour
             if (!(moveDir.x != 0 && moveDir.y != 0) && MM.map[currentPos.x + moveDir.x, currentPos.y + moveDir.y].TType == TileType.Floor && moveDir != Vector2Int.zero)
             {
                 movementEnded = false;
-                StartCoroutine(MoveToPosition(transform.position + (Vector3Int)moveDir,time));
+                if (!mySR.flipX && moveDir.x < 0)
+                    mySR.flipX = true;
+                else if (mySR.flipX && moveDir.x > 0)
+                    mySR.flipX = false;
+                StartCoroutine(MoveToPosition(transform.position + (Vector3Int)moveDir, time));
                 currentPos += moveDir;
                 firstBeat = false;
                 PlayerTurnEnd?.Invoke();
@@ -57,7 +63,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public IEnumerator MoveToPosition(Vector3 position, float timeToMove)
+    public IEnumerator MoveToPosition(Vector2 position, float timeToMove)
     {
         myAnim.SetBool("Move", true);
         var currentPos = transform.position;
@@ -65,7 +71,7 @@ public class Player : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime / timeToMove;
-            transform.position = Vector3.Lerp(currentPos, position, t);
+            transform.position = Vector2.Lerp(currentPos, position, t);
             yield return null;
         }
         movementEnded = true;
