@@ -12,7 +12,7 @@ public class Enemy_Base : MonoBehaviour
     public void Start()
     {
         MM = FindObjectOfType<MapMapper>();
-        time = FindObjectOfType<Clock>().beatTime;
+        time = FindObjectOfType<Clock>().beatTime - 0.1f;
         Animator = GetComponent<Animator>();
     }
 
