@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
-    public void MoveToDirection(Vector2 direction)
+    float time = 1f;
+    public IEnumerator MoveToDirection(Vector2 direction, Action FinishedCallback)
     {
         var x = direction.x > 0 ? Mathf.Ceil(direction.x) : Mathf.Floor(direction.x);
         var y = direction.y > 0 ? Mathf.Ceil(direction.y) : Mathf.Floor(direction.y);
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            transform.position += new Vector3(x, 0);
+            yield return new WaitForSecondsRealtime(time / 2);
+            transform.position += new Vector3(x / 2 , 0);
+            yield return new WaitForSecondsRealtime(time / 2);
+            transform.position += new Vector3(x / 2, 0);
         } 
         else
         {
-            transform.position += new Vector3(0, y);
+            yield return new WaitForSecondsRealtime(time / 2);
+            transform.position += new Vector3(0, y / 2);
+            yield return new WaitForSecondsRealtime(time / 2);
+            transform.position += new Vector3(0, y / 2);
         }
+
+        FinishedCallback?.Invoke();
     }
 }

@@ -20,8 +20,7 @@ public class Enemy_Chaser : Enemy_Base
         if(list.Count > 0)
         {
             Vector2 dir = list[0] - new Vector2Int((int)transform.position.x, (int)transform.position.y);
-            MoveToDirection(dir.normalized);
-            MoveFinished();
+            StartCoroutine(MoveToDirection(dir.normalized, MoveFinished));
         }
     }
 

@@ -60,8 +60,7 @@ public class Enemy_Walker : Enemy_Base
                     return;
                 }
             }
-            MoveToDirection(direction.normalized);
-            StepFinished();
+            StartCoroutine(MoveToDirection(direction.normalized, StepFinished));
         }
     }
 
