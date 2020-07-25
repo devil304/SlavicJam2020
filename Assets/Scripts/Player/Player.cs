@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
         tmp.dir = pos;
         tmp.MM = MM;
         tmp.time = time;
+        PlayerTurnEnd += tmp.MoveVinyl;
         MM.pros.Add(tmp);
     }
 

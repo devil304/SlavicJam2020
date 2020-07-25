@@ -7,11 +7,7 @@ public class vinyl : MonoBehaviour
     [HideInInspector]public Vector2Int dir;
     [HideInInspector]public float time;
     [HideInInspector]public MapMapper MM;
-    void Start()
-    {
-        Player.PlayerTurnEnd += MoveVinyl;
-    }
-    void MoveVinyl()
+    public void MoveVinyl()
     {
         if(!trig)
             StartCoroutine(MoveToPosition());
