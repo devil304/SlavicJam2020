@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
-    public void MoveToDirection(Vector2 direction, Action moveFinishedCallback)
+    public void MoveToDirection(Vector2 direction)
     {
         var x = direction.x > 0 ? Mathf.Ceil(direction.x) : Mathf.Floor(direction.x);
         var y = direction.y > 0 ? Mathf.Ceil(direction.y) : Mathf.Floor(direction.y);
@@ -17,7 +17,5 @@ public class Enemy_Base : MonoBehaviour
         {
             transform.position += new Vector3(0, y);
         }
-
-        moveFinishedCallback?.Invoke();
     }
 }

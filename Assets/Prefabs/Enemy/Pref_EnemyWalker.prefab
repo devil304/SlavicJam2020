@@ -95,7 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5bdae2725b2124e8549f3c7217f0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaypointsContainer: {fileID: 6642060841170628350}
+  BulletPrefab: {fileID: 8239679656887040810, guid: abe89286693e9504ba85b424a89bdfcd,
+    type: 3}
+  WaypointsContainerEditor: {fileID: 0}
+  waypointsEditor: []
+  prefs: []
   waypoints: []
 --- !u!1 &6642060841170628350
 GameObject:

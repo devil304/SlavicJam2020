@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Enemy_Walker : Enemy_Base
 {
-    
+    [SerializeField] private GameObject BulletPrefab;
     int waypointIndex = 0;
     bool isMovementFinished = false;
+    bool isStandingOnWaypoint = false;
+    bool isShootFinished = false;
 #if UNITY_EDITOR
     public Transform WaypointsContainerEditor;
     public WaypointEdit[] waypointsEditor;
@@ -16,7 +18,32 @@ public class Enemy_Walker : Enemy_Base
 
     private void Start()
     {
-        Player.PlayerTurnEnd += Move;
+        Player.PlayerTurnEnd += Action;
+    }
+
+    void Action()
+    {
+        if(waypointIndex < waypoints.Length)
+        {
+            if (waypoints[waypointIndex].shoot && !isShootFinished && isStandingOnWaypoint)
+            {
+                isShootFinished = true;
+                Shoot();
+            }
+            else
+            {
+                isShootFinished = false;
+                Move();
+            }
+        }
+    }
+    
+    void Shoot()
+    {
+        var spawnPos = waypoints[waypointIndex].pos + waypoints[waypointIndex].dir;
+        var bullet = Instantiate(BulletPrefab, new Vector3(spawnPos.x, spawnPos.y), Quaternion.identity);
+        var bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.Direction = waypoints[waypointIndex].dir;
     }
 
     void Move() 
@@ -24,7 +51,17 @@ public class Enemy_Walker : Enemy_Base
         if(!isMovementFinished)
         {
             var direction = (Vector3Int)waypoints[waypointIndex].pos - transform.position;
-            MoveToDirection(direction.normalized, StepFinished);
+            if (isStandingOnWaypoint)
+            {
+                waypointIndex++;
+                if (waypointIndex == waypoints.Length)
+                {
+                    isMovementFinished = true;
+                    return;
+                }
+            }
+            MoveToDirection(direction.normalized);
+            StepFinished();
         }
     }
 
@@ -32,16 +69,16 @@ public class Enemy_Walker : Enemy_Base
     {
         if(waypointIndex < waypoints.Length)
         {
-            var dist = Vector3.Distance(transform.position, (Vector3Int)waypoints[waypointIndex].pos); //Vector2.Distance byłby lepszy bo nie bierzemy pod uwagę osi z (Vector2 i Vector3 mają bezpośrednie konwersje) 
-            if (dist < 1.1)
+            var dist = Vector2.Distance(transform.position, waypoints[waypointIndex].pos);
+            Debug.Log(dist);
+            if (dist < 0.1)
             {
-                waypointIndex++;
-                if(waypointIndex == waypoints.Length)
-                {
-                    isMovementFinished = true;
-                }
+                isStandingOnWaypoint = true;
             }
-                
+            else
+            {
+                isStandingOnWaypoint = false;
+            }
         } 
     }
 }
