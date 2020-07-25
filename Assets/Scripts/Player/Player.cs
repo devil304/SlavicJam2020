@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     {
         time = FindObjectOfType<Clock>().beatTime;
         myAnim = GetComponent<Animator>();
-        myAnim.SetFloat("Speed",(1f/time));
+        myAnim.SetFloat("Speed",(1f/(time/2f)));
         MM = FindObjectOfType<MapMapper>();
         MI = new MainInput();
         MI.Enable();
