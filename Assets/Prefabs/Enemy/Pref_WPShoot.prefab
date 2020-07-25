@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 0d990ec4a786f6648b7a43d9e505a81b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1822812043804652649}
   - component: {fileID: 2036897588680580692}
   - component: {fileID: 7441401584882757421}
+  - component: {fileID: 578053250}
   m_Layer: 0
   m_Name: Pref_WPShoot
   m_TagString: Untagged
@@ -154,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 2ee6981e607bf6b41b25ec03ac9811e9, type: 3}
   m_Color: {r: 0.8679245, g: 0.15966538, b: 0.15966538, a: 1}
   m_FlipX: 0
@@ -179,3 +180,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {fileID: 691129370103634072}
+--- !u!114 &578053250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7116451432153800908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931a3e67f10e83949abc5ec09fe996fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 5, y: 2}
+  shoot: 1
+  dir: {x: 1, y: 0}

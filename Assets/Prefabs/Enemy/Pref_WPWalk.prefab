@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306238871922062508}
   - component: {fileID: 7274406123183780402}
+  - component: {fileID: 734869665}
   m_Layer: 0
   m_Name: Pref_WPWalk
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 2ee6981e607bf6b41b25ec03ac9811e9, type: 3}
   m_Color: {r: 0.35216326, g: 0.6415094, b: 0.18458524, a: 1}
   m_FlipX: 0
@@ -82,3 +83,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &734869665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880761669974843168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931a3e67f10e83949abc5ec09fe996fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 5, y: 1}
+  shoot: 0
+  dir: {x: 0, y: 0}

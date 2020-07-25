@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Enemy_Walker : Enemy_Base
 {
-    [SerializeField] private GameObject WaypointsContainer;
-    [SerializeField] private List<GameObject> waypoints; //Array zajmuje mniej i jest szybszy, a nie modyfikujesz w kodzie listy
-    private int waypointIndex = 0; //w C# domyślnie zmienne są private lub internal, więc można nie pisać ;)
-    private bool isMovementFinished = false;
-    private void Awake()
-    {
-        WaypointsContainer.SetActive(false);
-    }
+    
+    int waypointIndex = 0;
+    bool isMovementFinished = false;
+#if UNITY_EDITOR
+    public Transform WaypointsContainerEditor;
+    public WaypointEdit[] waypointsEditor;
+    public GameObject[] prefs;
+#endif
+    public WaypointData[] waypoints;
 
     private void Start()
     {
@@ -22,20 +23,20 @@ public class Enemy_Walker : Enemy_Base
     {
         if(!isMovementFinished)
         {
-            var direction = waypoints[waypointIndex].transform.position - transform.position;
+            var direction = (Vector3Int)waypoints[waypointIndex].pos - transform.position;
             MoveToDirection(direction.normalized, StepFinished);
         }
     }
 
     void StepFinished()
     {
-        if(waypointIndex < waypoints.Count)
+        if(waypointIndex < waypoints.Length)
         {
-            var dist = Vector3.Distance(transform.position, waypoints[waypointIndex].transform.position); //Vector2.Distance byłby lepszy bo nie bierzemy pod uwagę osi z (Vector2 i Vector3 mają bezpośrednie konwersje) 
+            var dist = Vector3.Distance(transform.position, (Vector3Int)waypoints[waypointIndex].pos); //Vector2.Distance byłby lepszy bo nie bierzemy pod uwagę osi z (Vector2 i Vector3 mają bezpośrednie konwersje) 
             if (dist < 1.1)
             {
                 waypointIndex++;
-                if(waypointIndex == waypoints.Count)
+                if(waypointIndex == waypoints.Length)
                 {
                     isMovementFinished = true;
                 }
