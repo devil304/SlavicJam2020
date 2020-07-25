@@ -19,12 +19,10 @@ public class EW1Editor : Editor
             for (int i = 0; i < myScript.waypoints.Length; i++)
             {
                 var tmp = Instantiate(myScript.waypoints[i].shoot ? myScript.prefs[1] : myScript.prefs[0], (Vector3Int)myScript.waypoints[i].pos, Quaternion.identity, null).GetComponent<WaypointEdit>();
-                tmp.pos = myScript.waypoints[i].pos;
                 tmp.shoot = myScript.waypoints[i].shoot;
-                tmp.dir = myScript.waypoints[i].dir;
                 if (tmp.shoot)
                 {
-                    switch (tmp.dir.x)
+                    switch (myScript.waypoints[i].dir.x)
                     {
                         case 1:
                             tmp.transform.Rotate(0f,0f,-90f);
@@ -33,7 +31,7 @@ public class EW1Editor : Editor
                             tmp.transform.Rotate(0f, 0f, 90f);
                             break;
                     }
-                    switch (tmp.dir.y)
+                    switch (myScript.waypoints[i].dir.y)
                     {
                         case -1:
                             tmp.transform.Rotate(0f, 0f, 180f);
@@ -49,8 +47,26 @@ public class EW1Editor : Editor
         if (GUILayout.Button("Waypoint save"))
         {
             myScript.waypoints = new WaypointData[myScript.waypointsEditor.Length];
-            for (int i = 0; i < myScript.waypointsEditor.Length; i++)
-                myScript.waypoints[i] = new WaypointData(myScript.waypointsEditor[i].pos, myScript.waypointsEditor[i].shoot, myScript.waypointsEditor[i].dir);
+            for (int i = 0; i < myScript.waypointsEditor.Length; i++) {
+                Vector2Int tmp = Vector2Int.zero;
+                switch(myScript.waypointsEditor[i].transform.rotation.eulerAngles.z)
+                {
+                    case 90f:
+                        tmp = Vector2Int.left;
+                        break;
+                    case 270f:
+                        tmp = Vector2Int.right;
+                        break;
+                    case 180f:
+                        tmp = Vector2Int.down;
+                        break;
+                    case 0f:
+                        tmp = Vector2Int.up;
+                        break;
+
+                }
+                myScript.waypoints[i] = new WaypointData(Vector2Int.RoundToInt(myScript.waypointsEditor[i].transform.position), myScript.waypointsEditor[i].shoot, tmp);
+            }
             foreach (WaypointEdit we in myScript.waypointsEditor)
                 DestroyImmediate(we.gameObject);
             myScript.waypointsEditor = null;

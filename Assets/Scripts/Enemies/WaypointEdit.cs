@@ -6,7 +6,5 @@ using UnityEngine;
 [Serializable]
 public class WaypointEdit : MonoBehaviour
 {
-    public Vector2Int pos;
     public bool shoot;
-    public Vector2Int dir;
 }
