@@ -11,6 +11,7 @@ public class inGameSettings : MonoBehaviour
     AudioSource[] MUSICsources;
     [SerializeField] public float SFXValue;
     [SerializeField] public float MUSICValue;
+    [SerializeField] public GameObject Counter;
 
     private void Awake()
     {
@@ -38,6 +39,10 @@ public class inGameSettings : MonoBehaviour
             foreach (AudioSource MUSICsource in MUSICsources)
             {
                 MUSICsource.volume = MUSICValue;
+            }
+            if(New.name!="Menu"&& Old.name != "Menu")
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
             }
         };
     }
