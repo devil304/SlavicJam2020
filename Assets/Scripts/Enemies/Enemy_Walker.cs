@@ -43,6 +43,15 @@ public class Enemy_Walker : Enemy_Base
     
     IEnumerator Shoot()
     {
+        if(waypoints[waypointIndex].dir.x > 0)
+        {
+            SpriteRenderer.flipX = false;
+        }
+        else
+        {
+            SpriteRenderer.flipX = true;
+        }
+
         Animator.SetBool("Shoot", true);
         yield return new WaitForSecondsRealtime(0.5f);
         Animator.SetBool("Shoot", false);
