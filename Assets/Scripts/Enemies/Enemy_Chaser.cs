@@ -9,11 +9,11 @@ public class Enemy_Chaser : Enemy_Base
     bool triggerConsumed = false;
     private new void Start()
     {
+        base.Start();
+
         pf = GetComponent<Pathfinding>();
         player = FindObjectOfType<Player>();
         Player.PlayerTurnEnd += Move;
-        
-        base.Start();
     }
 
     void Move()
@@ -26,11 +26,6 @@ public class Enemy_Chaser : Enemy_Base
             StartCoroutine(MoveToDirection(dir.normalized, MoveFinished));
         }
         CheckIfHit();
-    }
-
-    private void Update()
-    {
-        MoveFinished();
     }
 
     void MoveFinished()

@@ -18,8 +18,8 @@ public class Enemy_Walker : Enemy_Base
 
     private new void Start()
     {
-        Player.PlayerTurnEnd += Action;
         base.Start();
+        Player.PlayerTurnEnd += Action;
     }
 
     void Action()
@@ -30,7 +30,7 @@ public class Enemy_Walker : Enemy_Base
             if (waypoints[waypointIndex].shoot && !isShootFinished && isStandingOnWaypoint)
             {
                 isShootFinished = true;
-                Shoot();
+                StartCoroutine(Shoot());
             }
             else
             {
@@ -40,8 +40,12 @@ public class Enemy_Walker : Enemy_Base
         }
     }
     
-    void Shoot()
+    IEnumerator Shoot()
     {
+        Animator.SetBool("Shoot", true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        Animator.SetBool("Shoot", false);
+
         var spawnPos = waypoints[waypointIndex].pos + waypoints[waypointIndex].dir;
         var bullet = Instantiate(BulletPrefab, new Vector3(spawnPos.x, spawnPos.y), Quaternion.identity);
         var bulletScript = bullet.GetComponent<Bullet>();

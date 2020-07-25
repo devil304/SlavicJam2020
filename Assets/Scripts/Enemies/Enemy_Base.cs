@@ -6,16 +6,19 @@ using UnityEngine;
 public class Enemy_Base : MonoBehaviour
 {
     public MapMapper MM { get; set; }
+    public Animator Animator { get; set; }
     float time;
-
+    
     public void Start()
     {
         MM = FindObjectOfType<MapMapper>();
         time = FindObjectOfType<Clock>().beatTime;
+        Animator = GetComponent<Animator>();
     }
 
     public IEnumerator MoveToDirection(Vector2 direction, Action FinishedCallback)
     {
+        Animator.SetBool("Move", true);
         var x = direction.x > 0 ? Mathf.Ceil(direction.x) : Mathf.Floor(direction.x);
         var y = direction.y > 0 ? Mathf.Ceil(direction.y) : Mathf.Floor(direction.y);
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
@@ -33,6 +36,7 @@ public class Enemy_Base : MonoBehaviour
             transform.position += new Vector3(0, y / 2);
         }
 
+        Animator.SetBool("Move", false);
         FinishedCallback?.Invoke();
     }
 
