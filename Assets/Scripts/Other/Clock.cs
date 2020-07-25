@@ -8,8 +8,14 @@ public class Clock : MonoBehaviour
     public float beatTime = 0.5f, delay = 0;
     public static event BeatDel Beat;
     [SerializeField] AudioSource AS;
-    private void Awake()
+    private void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForFixedUpdate();
         DontDestroyOnLoad(gameObject);
         AS.PlayScheduled(0);
         StartCoroutine(beat());
