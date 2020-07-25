@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
-    float time = 1f;
+    float time = 0.5f;
+
+    private void Start()
+    {
+        time = FindObjectOfType<Clock>().beatTime;
+    }
+
     public IEnumerator MoveToDirection(Vector2 direction, Action FinishedCallback)
     {
         var x = direction.x > 0 ? Mathf.Ceil(direction.x) : Mathf.Floor(direction.x);
