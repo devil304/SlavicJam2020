@@ -14,6 +14,7 @@ public class Enemy_Base : MonoBehaviour
         MM = FindObjectOfType<MapMapper>();
         time = FindObjectOfType<Clock>().beatTime - 0.1f;
         Animator = GetComponent<Animator>();
+        Animator.SetFloat("Speed", (1f / (time / 2f)));
     }
 
     public IEnumerator MoveToDirection(Vector2 direction, Action FinishedCallback)
