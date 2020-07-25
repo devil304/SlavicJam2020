@@ -7,6 +7,7 @@ public class Enemy_Walker : Enemy_Base
     [SerializeField] private GameObject BulletPrefab;
     int waypointIndex = 0;
     bool isMovementFinished = false;
+    bool isMovementReversed = false;
     bool isStandingOnWaypoint = false;
     bool isShootFinished = false;
 #if UNITY_EDITOR
@@ -55,17 +56,31 @@ public class Enemy_Walker : Enemy_Base
     void Move() 
     {
         if(!isMovementFinished)
-        {
-            var direction = (Vector3Int)waypoints[waypointIndex].pos - transform.position;
+        {           
             if (isStandingOnWaypoint)
             {
-                waypointIndex++;
+                if(isMovementReversed)
+                {
+                    waypointIndex--;
+                }
+                else
+                {
+                    waypointIndex++;
+                }
+                
                 if (waypointIndex == waypoints.Length)
                 {
-                    isMovementFinished = true;
-                    return;
+                    isMovementReversed = true;
+                    waypointIndex -= 2;
+                }
+
+                if(waypointIndex == -1)
+                {
+                    isMovementReversed = false;
+                    waypointIndex += 2;
                 }
             }
+            var direction = (Vector3Int)waypoints[waypointIndex].pos - transform.position;
             StartCoroutine(MoveToDirection(direction.normalized, StepFinished));
         }
     }
