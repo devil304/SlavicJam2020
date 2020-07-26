@@ -25,7 +25,6 @@ public class Enemy_Walker : Enemy_Base
 
     void Action()
     {
-        CheckIfHit();
         if(waypointIndex < waypoints.Length)
         {
             if (waypoints[waypointIndex].shoot && !isShootFinished && isStandingOnWaypoint)
@@ -109,7 +108,6 @@ public class Enemy_Walker : Enemy_Base
                 isStandingOnWaypoint = false;
             }
         }
-        CheckIfHit();
     }
 
     private void OnDestroy()

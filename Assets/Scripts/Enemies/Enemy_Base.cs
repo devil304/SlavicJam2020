@@ -13,7 +13,7 @@ public class Enemy_Base : MonoBehaviour
     public void Start()
     {
         MM = FindObjectOfType<MapMapper>();
-        time = FindObjectOfType<Clock>().beatTime - 0.1f;
+        time = FindObjectOfType<Clock>().beatTime;
         Animator = GetComponent<Animator>();
         Animator.SetFloat("Speed", (1f / (time / 2f)));
         SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,25 +40,24 @@ public class Enemy_Base : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(x / 2 , 0);
-            CheckIfHit();
-            yield return new WaitForSecondsRealtime(time / 2);
+            yield return new WaitForSecondsRealtime((time / 2) - 0.1f);
             transform.position += new Vector3(x / 2, 0);
-            yield return new WaitForSecondsRealtime(0.1f);
         } 
         else
         {
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(0, y / 2);
-            CheckIfHit();
-            yield return new WaitForSecondsRealtime(time / 2);
+            yield return new WaitForSecondsRealtime((time / 2) - 0.1f);
             transform.position += new Vector3(0, y / 2);
-            yield return new WaitForSecondsRealtime(0.1f);
         }
 
         Animator.SetBool("Move", false);
         FinishedCallback?.Invoke();
     }
-
+    private void Update()
+    {
+        CheckIfHit();
+    }
     public void CheckIfHit()
     {
         for(int i = 0; i < MM.pros.Count; i++)
