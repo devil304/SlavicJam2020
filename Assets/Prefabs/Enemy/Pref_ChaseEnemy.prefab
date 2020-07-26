@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac3549783ce5f84ba1a2411e1f324ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreJukeBox: 1
 --- !u!114 &7783954136653747645
 MonoBehaviour:
   m_ObjectHideFlags: 0

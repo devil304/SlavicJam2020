@@ -13,19 +13,36 @@ public class Node
     public int hCost;     // distance from end node
     public Node parent;
 
-    public Node(TileInfo info)
+    public Node(TileInfo info, bool ignoreJukeBox)
     {
         gridX = (int)info.transform.position.x;
         gridY = (int)info.transform.position.y;
-        if(info.TType == TileType.Floor || info.hasJukeBox)
+
+        if (ignoreJukeBox)
         {
-            cost = 1f;
-            walkable = true;
+            if (info.TType == TileType.Floor)
+            {
+                cost = 1f;
+                walkable = true;
+            }
+            else
+            {
+                cost = 0f;
+                walkable = false;
+            }
         }
         else
         {
-            cost = 0f;
-            walkable = false;
+            if (info.TType == TileType.Floor || info.hasJukeBox)
+            {
+                cost = 1f;
+                walkable = true;
+            }
+            else
+            {
+                cost = 0f;
+                walkable = false;
+            }
         }
     }
 

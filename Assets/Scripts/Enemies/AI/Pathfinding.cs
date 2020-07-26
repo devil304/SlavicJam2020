@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
+    [SerializeField] private bool ignoreJukeBox = true;
     MapMapper MM;
     Grid grid;
     private void Start()
     {
         MM = FindObjectOfType<MapMapper>();
-        grid = new Grid(MM);
+        grid = new Grid(MM, ignoreJukeBox);
     }
 
     public List<Vector2Int> FindPath(Vector2Int startPoint, Vector2Int targetPoint)

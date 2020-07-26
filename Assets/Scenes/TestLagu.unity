@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play: {fileID: 0}
   pros: []
-  bullets: []
+  enemylist: 0
 --- !u!1 &349257040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,7 +6061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasTable: 0
-  hasJukeBox: 0
+  hasJukeBox: 1
   TType: 0
 --- !u!1 &1207728839
 GameObject:
@@ -9962,7 +9962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasTable: 0
-  hasJukeBox: 1
+  hasJukeBox: 0
   TType: 1
 --- !u!1 &2127975043
 GameObject:
@@ -10211,6 +10211,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pref_EnemyJukeBoxFinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429919085391201807, guid: 8c3651dcb536b814aa90bc3f9a58ab15,
+        type: 3}
+      propertyPath: ignoreJukeBox
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c3651dcb536b814aa90bc3f9a58ab15, type: 3}

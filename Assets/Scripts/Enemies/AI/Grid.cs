@@ -10,7 +10,7 @@ public class Grid
 
     // New grid without tile cost
     // Cost is set to 1 if walkable and 0 if not
-    public Grid(MapMapper map)
+    public Grid(MapMapper map, bool ignoreJukeBox)
     {
         gridSizeX = map.map.GetLength(0);
         gridSizeY = map.map.GetLength(1);
@@ -22,7 +22,7 @@ public class Grid
             {
                 if(map.map[x, y] != null)
                 {
-                    nodes[x, y] = new Node(map.map[x, y]);
+                    nodes[x, y] = new Node(map.map[x, y], ignoreJukeBox);
                 }
                 else
                 {
