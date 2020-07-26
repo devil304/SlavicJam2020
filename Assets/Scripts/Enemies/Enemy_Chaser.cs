@@ -26,7 +26,6 @@ public class Enemy_Chaser : Enemy_Base
             Vector2 dir = list[0] - new Vector2Int((int)transform.position.x, (int)transform.position.y);
             StartCoroutine(MoveToDirection(dir.normalized, MoveFinished));
         }
-        CheckIfHit();
     }
 
     void MoveFinished()
@@ -38,7 +37,8 @@ public class Enemy_Chaser : Enemy_Base
                 triggerConsumed = true;
                 Debug.Log("Player hit.");
             }
-        } 
+        }
+        CheckIfHit();
     }
 
     private void OnDestroy()

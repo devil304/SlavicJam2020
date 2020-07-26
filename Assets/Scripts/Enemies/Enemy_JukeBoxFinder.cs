@@ -38,7 +38,6 @@ public class Enemy_JukeBoxFinder : Enemy_Base
         {
             Player.PlayerTurnEnd -= Move;
         }
-        CheckIfHit();
     }
 
     void MoveFinished()
@@ -47,6 +46,7 @@ public class Enemy_JukeBoxFinder : Enemy_Base
         {
             Debug.Log("Juke box has been found.");
         }
+        CheckIfHit();
     }
 
     Vector2Int? FindJukeBox()

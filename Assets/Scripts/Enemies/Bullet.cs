@@ -15,20 +15,16 @@ public class Bullet : MonoBehaviour
         Player.PlayerTurnEnd += Move;
     }
 
-    private void Update()
-    {
-        if (player.currentPos == (Vector2)transform.position && !hitOccured)
-        {
-            hitOccured = true;
-            Debug.Log("Player hit.");
-            // do something
-        }
-    }
-
     void Move()
     {
         if(Direction != null)
         {
+            if (player.currentPos == (Vector2)transform.position && !hitOccured)
+            {
+                hitOccured = true;
+                Debug.Log("Player hit.");
+                // do something
+            }
             transform.position += new Vector3(Direction.x,Direction.y);
 
             if(MM.map[(int)transform.position.x, (int)transform.position.y].TType == TileType.Wall)
