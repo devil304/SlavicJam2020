@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             //Debug.Log("Move : " + moveDir);
             Debug.DrawLine(new Vector3(4,4,0), new Vector3(5, 5, 0), Color.red, 0.1f);
         };
-
+        StartCoroutine(danceCheck());
     }
 
     public IEnumerator Attack(Vector2Int pos)
@@ -103,6 +103,14 @@ public class Player : MonoBehaviour
         cameraMoving = false;
     }
 
+    IEnumerator danceCheck()
+    {
+        yield return new WaitUntil(()=>MM.enemylist<=0);
+        MI.Disable();
+        myAnim.SetBool("Dance", true);
+        yield return new WaitForSecondsRealtime(3f);
+        Destroy(this);
+    }
 
     public IEnumerator MoveToPosition(Vector2 position, float timeToMove)
     {
