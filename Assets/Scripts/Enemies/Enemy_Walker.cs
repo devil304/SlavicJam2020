@@ -114,6 +114,6 @@ public class Enemy_Walker : Enemy_Base
 
     private void OnDestroy()
     {
-        Player.PlayerTurnEnd -= Move;
+        Player.PlayerTurnEnd -= Action;
     }
 }
