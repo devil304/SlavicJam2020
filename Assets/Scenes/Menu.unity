@@ -3586,7 +3586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4999038862e212a4daab1ed3734734ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: TestDevil304
+  nextScene: Lvl1
 --- !u!222 &5188849947624406250
 CanvasRenderer:
   m_ObjectHideFlags: 0

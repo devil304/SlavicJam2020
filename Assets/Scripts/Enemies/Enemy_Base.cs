@@ -18,7 +18,7 @@ public class Enemy_Base : MonoBehaviour
         Animator.SetFloat("Speed", (1f / (time / 2f)));
         SpriteRenderer = GetComponent<SpriteRenderer>();
         MM.enemylist++;
-        Debug.Log(MM.enemylist);
+        //Debug.Log(MM.enemylist);
     }
 
     public IEnumerator MoveToDirection(Vector2 direction, Action FinishedCallback)
@@ -70,7 +70,7 @@ public class Enemy_Base : MonoBehaviour
                 MM.pros.Remove(MM.pros[i]);
                 Destroy(tmp.gameObject);
                 MM.enemylist--;
-                Debug.Log(MM.enemylist);
+                //Debug.Log(MM.enemylist);
                 Animator.SetBool("Dance", true);
                 Destroy(this);
                 break;

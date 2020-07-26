@@ -10,7 +10,22 @@ public class MapMapper : MonoBehaviour
     [HideInInspector] public Player play;
     [HideInInspector] public List<vinyl> pros = new List<vinyl>();
     [HideInInspector] public int enemylist = 0;
+    [SerializeField] SceneChange sc;
+    [SerializeField] GameObject winPanel;
 
+
+    public void die()
+    {
+
+    }
+
+    public IEnumerator win()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+        winPanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(3f);
+        sc.loadScene();
+    }
     public void mapTheMap()
     {
        List<Transform> tiles = new List<Transform>();
