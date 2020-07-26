@@ -32,9 +32,4 @@ public class vinyl : MonoBehaviour
         }
         trig = false;
     }
-
-    private void OnDestroy()
-    {
-        Player.PlayerTurnEnd -= MoveVinyl;
-    }
 }

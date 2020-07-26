@@ -63,7 +63,10 @@ public class Enemy_Base : MonoBehaviour
         {
             if(Vector2Int.RoundToInt(MM.pros[i].transform.position) == Vector2Int.RoundToInt(transform.position))
             {
-                Destroy(MM.pros[i].gameObject);
+                var tmp = MM.pros[i];
+                Player.PlayerTurnEnd -= MM.pros[i].MoveVinyl;
+                MM.pros.Remove(MM.pros[i]);
+                Destroy(tmp);
                 MM.enemylist--;
                 Debug.Log(MM.enemylist);
                 Animator.SetBool("Dance", true);
