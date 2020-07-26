@@ -19,8 +19,10 @@ public class inGameSettings : MonoBehaviour
         SFXsources = GameObject.FindGameObjectsWithTag("SFX")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
         MUSICsources = GameObject.FindGameObjectsWithTag("MUSIC")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
 
-        SFXValue = PlayerPrefs.GetFloat("SFXValue");
-        MUSICValue = PlayerPrefs.GetFloat("MUSICValue");
+        if(PlayerPrefs.HasKey("SFXValue"))
+            SFXValue = PlayerPrefs.GetFloat("SFXValue");
+        if (PlayerPrefs.HasKey("MUSICValue"))
+            MUSICValue = PlayerPrefs.GetFloat("MUSICValue");
 
         SceneManager.activeSceneChanged += (Old, New) =>
         {
