@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        PlayerTurnEnd = null;
         mySR = GetComponent<SpriteRenderer>();
         time = FindObjectOfType<Clock>().beatTime;
         myAnim = GetComponent<Animator>();
