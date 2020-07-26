@@ -26,9 +26,7 @@ public class MapMapper : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.1f);
         LosePanel.SetActive(true);
-        yield return new WaitForSecondsRealtime(3f);
         sc.nextScene = gameObject.scene.name;
-        sc.loadScene();
     }
     public void WIn()
     {
@@ -39,8 +37,6 @@ public class MapMapper : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3f);
         winPanel.SetActive(true);
-        yield return new WaitForSecondsRealtime(3f);
-        sc.loadScene();
     }
     public void mapTheMap()
     {
