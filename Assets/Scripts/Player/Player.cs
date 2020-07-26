@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public static event PT PlayerTurnEnd;
     public Vector2Int currentPos;
-    MainInput MI;
+    public MainInput MI;
     Vector2Int moveDir = Vector2Int.zero, attacDir = Vector2Int.zero;
     bool moving = false, attacking = false;
     MapMapper MM;

@@ -44,7 +44,7 @@ public class Enemy_JukeBoxFinder : Enemy_Base
     {
         if (MM.map[(int)transform.position.x, (int)transform.position.y].hasJukeBox)
         {
-            Debug.Log("Juke box has been found.");
+            MM.die();
         }
         CheckIfHit();
     }

@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
             if (player.currentPos == (Vector2)transform.position && !hitOccured)
             {
                 hitOccured = true;
-                Debug.Log("Player hit.");
+                MM.die();
                 // do something
             }
             transform.position += new Vector3(Direction.x,Direction.y);
@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
             if(player.currentPos == (Vector2)transform.position && !hitOccured)
             {
                 hitOccured = true;
-                Debug.Log("Player hit.");
+                MM.die();
                 // do something
             }
         }

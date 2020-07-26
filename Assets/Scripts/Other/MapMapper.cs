@@ -12,14 +12,27 @@ public class MapMapper : MonoBehaviour
     [HideInInspector] public int enemylist = 0;
     [SerializeField] SceneChange sc;
     [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject LosePanel;
 
 
     public void die()
     {
-
+        play.MI.Disable();
+        Destroy(play);
+        FindObjectOfType<counter>().trig = false;
+        StartCoroutine(Die());
+    }
+    public IEnumerator Die()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        LosePanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(3f);
+        sc.nextScene = gameObject.scene.name;
+        sc.loadScene();
     }
     public void WIn()
     {
+        FindObjectOfType<counter>().trig = false;
         StartCoroutine(win());
     }
     public IEnumerator win()

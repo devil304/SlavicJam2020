@@ -16,6 +16,7 @@ public class Clock : MonoBehaviour
     IEnumerator LateStart()
     {
         yield return new WaitForFixedUpdate();
+        FindObjectOfType<counter>().trig = true;
         AS.PlayScheduled(0);
         StartCoroutine(beat());
     }

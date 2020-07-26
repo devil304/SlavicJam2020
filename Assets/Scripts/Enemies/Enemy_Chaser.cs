@@ -35,7 +35,7 @@ public class Enemy_Chaser : Enemy_Base
             if (player.currentPos == (Vector2)transform.position)
             {
                 triggerConsumed = true;
-                Debug.Log("Player hit.");
+                MM.die();
             }
         }
         CheckIfHit();
