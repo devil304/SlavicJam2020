@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
         MM = FindObjectOfType<MapMapper>();
         player = FindObjectOfType<Player>();
         Player.PlayerTurnEnd += Move;
-        MM.bullets.Add(this);
     }
 
     private void Update()
@@ -50,6 +49,5 @@ public class Bullet : MonoBehaviour
     private void OnDestroy()
     {
         Player.PlayerTurnEnd -= Move;
-        MM.bullets.Remove(this);
     }
 }
