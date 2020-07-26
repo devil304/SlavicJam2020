@@ -19,12 +19,6 @@ public class Bullet : MonoBehaviour
     {
         if(Direction != null)
         {
-            if (player.currentPos == (Vector2)transform.position && !hitOccured)
-            {
-                hitOccured = true;
-                MM.die();
-                // do something
-            }
             transform.position += new Vector3(Direction.x,Direction.y);
 
             if(MM.map[(int)transform.position.x, (int)transform.position.y].TType == TileType.Wall)
