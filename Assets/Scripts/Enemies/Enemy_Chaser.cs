@@ -19,6 +19,7 @@ public class Enemy_Chaser : Enemy_Base
     void Move()
     {
         CheckIfHit();
+        MoveFinished();
         List<Vector2Int> list = pf.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.y), player.currentPos);
         if(list.Count > 0)
         {

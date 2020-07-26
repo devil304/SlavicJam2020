@@ -17,7 +17,7 @@ public class Node
     {
         gridX = (int)info.transform.position.x;
         gridY = (int)info.transform.position.y;
-        if(info.TType == TileType.Floor)
+        if(info.TType == TileType.Floor || info.hasJukeBox)
         {
             cost = 1f;
             walkable = true;
