@@ -63,6 +63,7 @@ public class Enemy_Base : MonoBehaviour
                 MM.enemylist--;
                 Animator.SetBool("Dance", true);
                 Destroy(this);
+                break;
             }
         }
     }

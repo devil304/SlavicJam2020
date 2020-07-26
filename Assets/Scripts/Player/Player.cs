@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
 
     IEnumerator danceCheck()
     {
+        yield return new WaitForFixedUpdate();
         yield return new WaitUntil(()=>MM.enemylist<=0);
         MI.Disable();
         myAnim.SetBool("Dance", true);
