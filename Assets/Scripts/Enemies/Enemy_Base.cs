@@ -40,6 +40,7 @@ public class Enemy_Base : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(x / 2 , 0);
+            CheckIfHit();
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(x / 2, 0);
             yield return new WaitForSecondsRealtime(0.1f);
@@ -48,6 +49,7 @@ public class Enemy_Base : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(0, y / 2);
+            CheckIfHit();
             yield return new WaitForSecondsRealtime(time / 2);
             transform.position += new Vector3(0, y / 2);
             yield return new WaitForSecondsRealtime(0.1f);
