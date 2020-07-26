@@ -19,6 +19,10 @@ public class Clock : MonoBehaviour
         AS.PlayScheduled(0);
         StartCoroutine(beat());
     }
+    void OnDestroy()
+    {
+        Beat = null;
+    }
 
     IEnumerator beat()
     {
