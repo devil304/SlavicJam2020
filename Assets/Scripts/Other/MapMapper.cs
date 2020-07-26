@@ -18,7 +18,10 @@ public class MapMapper : MonoBehaviour
     {
 
     }
-
+    public void WIn()
+    {
+        StartCoroutine(win());
+    }
     public IEnumerator win()
     {
         yield return new WaitForSecondsRealtime(3f);

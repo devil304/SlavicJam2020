@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(()=>MM.enemylist<=0);
         MI.Disable();
         myAnim.SetBool("Dance", true);
-        StartCoroutine(MM.win());
+        MM.WIn();
         Destroy(this);
     }
 
