@@ -66,7 +66,7 @@ public class Enemy_Base : MonoBehaviour
                 var tmp = MM.pros[i];
                 Player.PlayerTurnEnd -= MM.pros[i].MoveVinyl;
                 MM.pros.Remove(MM.pros[i]);
-                Destroy(tmp);
+                Destroy(tmp.gameObject);
                 MM.enemylist--;
                 Debug.Log(MM.enemylist);
                 Animator.SetBool("Dance", true);
