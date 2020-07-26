@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class counter : MonoBehaviour
 {
-    float tim = 0;
+    public float tim = 0;
     TextMeshProUGUI tmp;
     public bool trig = false;
     private void Awake()
@@ -18,8 +18,12 @@ public class counter : MonoBehaviour
         if (trig)
         {
             tim += Time.deltaTime;
-            tmp.text = ((int)(tim / 60)).ToString() + ':' + Math.Round(tim - (((int)(tim / 60)) * 60), 2).ToString();
+            UpdateC();
         }
        //PlayerPrefs.SetString("Time", tmp.text);
+    }
+    public void UpdateC()
+    {
+        tmp.text = ((int)(tim / 60)).ToString() + ':' + Math.Round(tim - (((int)(tim / 60)) * 60), 2).ToString();
     }
 }

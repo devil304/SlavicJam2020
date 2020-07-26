@@ -14,6 +14,11 @@ public class inGameSettings : MonoBehaviour
 
     private void Awake()
     {
+        if(FindObjectsOfType<inGameSettings>().Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
         DontDestroyOnLoad(gameObject);
 
         SFXsources = GameObject.FindGameObjectsWithTag("SFX")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
@@ -47,6 +52,11 @@ public class inGameSettings : MonoBehaviour
             if (New.name != "Menu" && Old.name != "Menu")
             {
                 transform.GetChild(0).gameObject.SetActive(true);
+            } else if ((New.name == "Menu" || Old.name == "Menu") && transform.GetChild(0).gameObject.activeInHierarchy)
+            {
+                var c = FindObjectOfType<counter>();
+                c.tim = 0;
+                c.UpdateC();
             }
         };
     }
