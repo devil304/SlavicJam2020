@@ -15,6 +15,7 @@ public class counter : MonoBehaviour
     void Update()
     {
         tim += Time.deltaTime;
-        tmp.text = ((int)(tim / 60)).ToString() + ':' + Math.Round(tim - (((int)(tim / 60))*60), 2).ToString();
+        tmp.text = ((int)(tim / 60)).ToString() + ':' + Math.Round(tim - (((int)(tim / 60)) * 60), 2).ToString();
+        PlayerPrefs.SetString("Time", tmp.text);
     }
 }

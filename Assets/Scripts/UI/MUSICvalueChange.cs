@@ -15,5 +15,6 @@ public class MUSICvalueChange : MonoBehaviour
     public void valChange(float val)
     {
         iGS.MusicChange(val);
+        PlayerPrefs.SetFloat("MUSICValue", val);
     }
 }

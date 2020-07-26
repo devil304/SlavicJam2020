@@ -15,5 +15,6 @@ public class SFXvalueChanger : MonoBehaviour
     public void valChange(float val)
     {
         iGS.SFXChange(val);
+        PlayerPrefs.SetFloat("SFXValue", val);
     }
 }

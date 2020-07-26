@@ -11,7 +11,6 @@ public class inGameSettings : MonoBehaviour
     AudioSource[] MUSICsources;
     [SerializeField] public float SFXValue;
     [SerializeField] public float MUSICValue;
-    [SerializeField] public GameObject Counter;
 
     private void Awake()
     {
@@ -20,13 +19,16 @@ public class inGameSettings : MonoBehaviour
         SFXsources = GameObject.FindGameObjectsWithTag("SFX")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
         MUSICsources = GameObject.FindGameObjectsWithTag("MUSIC")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
 
+        SFXValue = PlayerPrefs.GetFloat("SFXValue");
+        MUSICValue = PlayerPrefs.GetFloat("MUSICValue");
+
         SceneManager.activeSceneChanged += (Old, New) =>
         {
 #if UNITY_ANDROID
             GameObject.FindGameObjectWithTag("Touchscreen")?.SetActive(true);
 #endif
 #if UNITY_STANDALONE
-                GameObject.FindGameObjectWithTag("Touchscreen")?.SetActive(false);
+            GameObject.FindGameObjectWithTag("Touchscreen")?.SetActive(false);
 #endif
 
             SFXsources = GameObject.FindGameObjectsWithTag("SFX")?.Select(AS => AS.GetComponent<AudioSource>()).ToArray();
@@ -40,7 +42,7 @@ public class inGameSettings : MonoBehaviour
             {
                 MUSICsource.volume = MUSICValue;
             }
-            if(New.name!="Menu"&& Old.name != "Menu")
+            if (New.name != "Menu" && Old.name != "Menu")
             {
                 transform.GetChild(0).gameObject.SetActive(true);
             }
@@ -49,7 +51,7 @@ public class inGameSettings : MonoBehaviour
 
     public void SFXChange(float Value)
     {
-        foreach(AudioSource SFXsource in SFXsources)
+        foreach (AudioSource SFXsource in SFXsources)
         {
             SFXsource.volume = Value;
         }
